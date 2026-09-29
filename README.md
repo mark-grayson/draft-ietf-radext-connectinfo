@@ -1,4 +1,4 @@
-# A syntax for the RADIUS Connect-Info attribute used in Wi-Fi networks
+# draft-ietf-radext-connectinfo
 
 This is the working area for the IETF RADEXT Working Group Internet-Draft,
 `draft-ietf-radext-connectinfo`.
@@ -14,22 +14,23 @@ server about a user's connection to an IEEE 802.11 network.
 
 Discussion of this draft happens on the RADEXT mailing list
 (<radext@ietf.org>) and in the issues and pull requests in this repository.
-IETF's participation rules (the [Note Well](https://www.ietf.org/about/note-well/)
-applies to all contributions here).
 
-## Building
+IETF's participation rules, see the [Note Well](https://www.ietf.org/about/note-well/),
+applies to all contributions here.
 
-The draft source is `draft-ietf-radext-connectinfo-*.md`, in
+## Dependencies
+
+The draft source is `draft-ietf-radext-connectinfo.md`, in
 [kramdown-rfc](https://github.com/cabo/kramdown-rfc) Markdown.
 
 ```sh
 gem install kramdown-rfc
 pip install xml2rfc
-
-make            # text output, plus a versioned copy
-make html       # HTML output
-make spell      # interactive spell check (needs aspell)
-make version    # print the revision number from the docname
-make clean
 ```
 
+## Building
+
+```sh
+make draft-ietf-radext-connectinfo.txt  ## make the text version
+make draft-ietf-radext-connectinfo.html ## make the html version
+```
