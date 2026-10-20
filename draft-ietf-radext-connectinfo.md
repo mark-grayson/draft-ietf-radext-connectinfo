@@ -332,8 +332,10 @@ keyValueAttribute =/ 1*NO-DELIM-COLON ":"  *SP 1*NO-DELIM-COLON
 MAXSPEED         =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) /
                     (NZDIGIT DIGIT DIGIT DIGIT) /
                     (NZDIGIT DIGIT DIGIT DIGIT DIGIT)) "." DIGIT DIGIT
-            ; Maximum AP to Device speed in Mbps, (0.00 - 99999.99),
-            ; calculated as:
+            ; Maximum theoretical AP-to-STA PHY data rate in Mbps,
+            ; (0.00 - 99999.99). This is a network-level capability
+            ; indicator, not the negotiated or currently achieved rate
+            ; of a station, calculated as:
             ; SC * MD * CR * SS / (SYM + GD)
             ; where:
             ; SC  = Number of Data Sub-Carriers
@@ -343,7 +345,9 @@ MAXSPEED         =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) /
             ;       where 2^MD = num mod'n states
             ; SS  = number of spatial streams
             ; SYM = symbol interval (micro-seconds)
-            ; GD  = guard interval (micro-seconds)
+            ; GD  = guard interval (micro-seconds). For PHYs supporting
+            ; multiple guard intervals, the calculation MUST use the
+            ; guard interval specified for the applicable amendment.
 
 WIFIAMENDMENT    =  "802.11" AMENDMENT
 
