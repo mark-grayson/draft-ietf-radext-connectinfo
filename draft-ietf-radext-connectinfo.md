@@ -369,7 +369,8 @@ SS               =  ["-"] (DIGIT / (NZDIGIT DIGIT) / ("1" DIGIT DIGIT))
             ; and -41 represent -41 dBm
 
 RATE             =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) /
-                    (NZDIGIT DIGIT DIGIT DIGIT)) ["." DIGIT]
+                    (NZDIGIT DIGIT DIGIT DIGIT) /
+                    (NZDIGIT DIGIT DIGIT DIGIT  DIGIT)) ["." DIGIT]
             ; A transmit or receive rate in Mbps
 
 GOC              =  NZDIGIT / (NZDIGIT DIGIT) / ("1" DIGIT DIGIT) /
