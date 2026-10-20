@@ -310,9 +310,11 @@ keyValueAttribute =/ "FrameRetry:" *SP PCT ["(" AGGR ")"]
             ; aggregation technique use for reporting a value derived
             ; from multiple measurements
 
-keyValueAttribute =/ "Global-OC:" *SP GOC     
+keyValueAttribute =/ "Global-OC:" *SP GOC ["(Link-ID=" LINKID ")"]  
             ; Wi-Fi Global Operating Class as defined in IEEE 802.11
-            ; Annex E
+            ; Annex E and an optional Link-ID used for multiple links
+            ; where LINKID identifies the corresponding link using
+            ; the IEEE 802.11 Link ID.
 
 ;---------------------------------------------------------------------
 ; keyValueAttributes - extensibility syntax.
@@ -413,6 +415,9 @@ SAMPLE           = (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) )
 TIMEUNIT         =  "S" / "M"
             ; S = units of seconds, M = units of minutes
 
+LINKID           = DIGIT / ("1" U5DIGIT)
+            ; IEEE 802.11be Link ID: 0-15
+
 DELIMITER        =  SLASH / 1*SP
             ; existing vendor delimiters
 
@@ -462,7 +467,7 @@ Connect-Info = "CONNECT RSSI:56 TxBitRate:150.0 RxBitRate:150.0
                 Global-OC:116"
 
 Connect-Info = "CONNECT 400.00 Mbps 802.11ax RSSI:56 TxBitRate:150.0
-                RxBitRate:150.0 Global-OC:133"
+                RxBitRate:150.0 Global-OC:133(Link-ID:0)"
 
 ~~~~~~~~~~
 {: #ci-example3 title="Example encodings of Connect-Info attribute in RADIUS Access-Request message"}
@@ -506,7 +511,7 @@ Connect-Info = "CONNECT 400.00 Mbps 802.11ac RSSI:56(AVG-LIN 600S)
 Connect-Info = "CONNECT TxBitRate:150.0(MAX 30S)
                 RxBitRate:120.5(MAX 30S) RSSI:-65(AVG-EXP 6-100)
                 FrameLoss:2(ACC 30S) FrameRetry:4(ACC 30S)
-                Global-OC:133"
+                Global-OC:133(Link-ID:0)"
 
 ~~~~~~~~~~
 {: #ci-example4 title="Example encodings of Connect-Info attribute in RADIUS Accounting-Request message"}
