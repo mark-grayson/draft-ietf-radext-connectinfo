@@ -291,26 +291,38 @@ keyValueAttribute =  "RSSI:" *SP SS ["(" AGGR ")"]
 keyValueAttribute =/ "TxBitRate:" *SP RATE ["(" AGGR ")"]
             ; The AP to device transmission rate in Mbps and
             ; optionally the aggregation technique use for
-            ; reporting a value derived from multiple measurements
+            ; reporting a value derived from multiple measurements.
+            ; When operating with multiple links, the reported
+            ; transmission rate corresponds to the aggregate across
+            ; all links.
 
 keyValueAttribute =/ "RxBitRate:" *SP RATE ["(" AGGR ")"]
             ; The device to AP transmission rate in Mbps and
             ; optionally the aggregation technique use for
-            ; reporting a value derived from multiple measurements
+            ; reporting a value derived from multiple measurements.
+            ; When operating with multiple links, the reported
+            ; reception rate corresponds to the aggregate across
+            ; all links.
 
 keyValueAttribute =/ "FrameLoss:" *SP PCT ["(" AGGR ")"]
             ; The AP to device 802.11 frame loss rate experienced,
             ; encoded as an integer percentage and optionally the
             ; aggregation technique use for reporting a value derived
-            ; from multiple measurements
+            ; from multiple measurements.
+            ; When operating with multiple links, the reported
+            ; frame loss rate corresponds to the aggregate across
+            ; all links.
 
 keyValueAttribute =/ "FrameRetry:" *SP PCT ["(" AGGR ")"]
             ; The AP to device 802.11 frame retry rate experienced,
             ; encoded as an integer percentage and optionally the
             ; aggregation technique use for reporting a value derived
-            ; from multiple measurements
+            ; from multiple measurements.
+            ; When operating with multiple links, the reported
+            ; frame retry rate corresponds to the aggregate across
+            ; all links.
 
-keyValueAttribute =/ "Global-OC:" *SP GOC ["(Link-ID=" LINKID ")"]  
+keyValueAttribute =/ "Global-OC:" *SP GOC ["(Link-ID:" LINKID ")"]  
             ; Wi-Fi Global Operating Class as defined in IEEE 802.11
             ; Annex E and an optional Link-ID used for multiple links
             ; where LINKID identifies the corresponding link using
@@ -341,7 +353,7 @@ MAXSPEED         =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) /
             ; SC  = Number of Data Sub-Carriers
             ; CR  = Coding Rate, e.g., 0.5 (BPSK),
             ;       0.75 (256QAM)
-            ; MD  = Modulation rate (1-10),
+            ; MD  = Modulation rate (1-12),
             ;       where 2^MD = num mod'n states
             ; SS  = number of spatial streams
             ; SYM = symbol interval (micro-seconds)
