@@ -341,13 +341,12 @@ MAXSPEED         =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) /
             ; SC  = Number of Data Sub-Carriers
             ; CR  = Coding Rate, e.g., 0.5 (BPSK),
             ;       0.75 (256QAM)
-            ; MD  = Modulation rate (1-8),
+            ; MD  = Modulation rate (1-10),
             ;       where 2^MD = num mod'n states
             ; SS  = number of spatial streams
             ; SYM = symbol interval (micro-seconds)
-            ; GD  = guard interval (micro-seconds). For PHYs supporting
-            ; multiple guard intervals, the calculation MUST use the
-            ; guard interval specified for the applicable amendment.
+            ; GD  = guard interval (micro-seconds), the shortest
+            ;       guard interval defined by the amendment amendment.
 
 WIFIAMENDMENT    =  "802.11" AMENDMENT
 
@@ -403,8 +402,8 @@ VARIANT          =  "LIN" / "EXP"
             ; LIN = linear (arithmetic mean) average calculation
             ; EXP = exponential weighted average calculation
 
-WINDOW           =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT))
-                    TIMEUNIT
+WINDOW           =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT)
+                    / (NZDIGIT DIGIT DIGIT DIGIT) ) TIMEUNIT
             ; The time window over which the algorithm operates,
             ; measured in units of TIMEUNIT
 
