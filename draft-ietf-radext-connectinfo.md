@@ -291,28 +291,42 @@ keyValueAttribute =  "RSSI:" *SP SS ["(" AGGR ")"]
 keyValueAttribute =/ "TxBitRate:" *SP RATE ["(" AGGR ")"]
             ; The AP to device transmission rate in Mbps and
             ; optionally the aggregation technique use for
-            ; reporting a value derived from multiple measurements
+            ; reporting a value derived from multiple measurements.
+            ; When operating with multiple links, the reported
+            ; transmission rate corresponds to the aggregate across
+            ; all links.
 
 keyValueAttribute =/ "RxBitRate:" *SP RATE ["(" AGGR ")"]
             ; The device to AP transmission rate in Mbps and
             ; optionally the aggregation technique use for
-            ; reporting a value derived from multiple measurements
+            ; reporting a value derived from multiple measurements.
+            ; When operating with multiple links, the reported
+            ; reception rate corresponds to the aggregate across
+            ; all links.
 
 keyValueAttribute =/ "FrameLoss:" *SP PCT ["(" AGGR ")"]
             ; The AP to device 802.11 frame loss rate experienced,
             ; encoded as an integer percentage and optionally the
             ; aggregation technique use for reporting a value derived
-            ; from multiple measurements
+            ; from multiple measurements.
+            ; When operating with multiple links, the reported
+            ; frame loss rate corresponds to the aggregate across
+            ; all links.
 
 keyValueAttribute =/ "FrameRetry:" *SP PCT ["(" AGGR ")"]
             ; The AP to device 802.11 frame retry rate experienced,
             ; encoded as an integer percentage and optionally the
             ; aggregation technique use for reporting a value derived
-            ; from multiple measurements
+            ; from multiple measurements.
+            ; When operating with multiple links, the reported
+            ; frame retry rate corresponds to the aggregate across
+            ; all links.
 
-keyValueAttribute =/ "Global-OC:" *SP GOC     
+keyValueAttribute =/ "Global-OC:" *SP GOC ["(Link-ID:" LINKID ")"]  
             ; Wi-Fi Global Operating Class as defined in IEEE 802.11
-            ; Annex E
+            ; Annex E and an optional Link-ID used for multiple links
+            ; where LINKID identifies the corresponding link using
+            ; the IEEE 802.11 Link ID.
 
 ;---------------------------------------------------------------------
 ; keyValueAttributes - extensibility syntax.
@@ -330,18 +344,21 @@ keyValueAttribute =/ 1*NO-DELIM-COLON ":"  *SP 1*NO-DELIM-COLON
 MAXSPEED         =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) /
                     (NZDIGIT DIGIT DIGIT DIGIT) /
                     (NZDIGIT DIGIT DIGIT DIGIT DIGIT)) "." DIGIT DIGIT
-            ; Maximum AP to Device speed in Mbps, (0.00 - 99999.99),
-            ; calculated as:
+            ; Maximum theoretical AP-to-STA PHY data rate in Mbps,
+            ; (0.00 - 99999.99). This is a network-level capability
+            ; indicator, not the negotiated or currently achieved rate
+            ; of a station, calculated as:
             ; SC * MD * CR * SS / (SYM + GD)
             ; where:
             ; SC  = Number of Data Sub-Carriers
             ; CR  = Coding Rate, e.g., 0.5 (BPSK),
             ;       0.75 (256QAM)
-            ; MD  = Modulation rate (1-8),
+            ; MD  = Modulation rate (1-12),
             ;       where 2^MD = num mod'n states
             ; SS  = number of spatial streams
             ; SYM = symbol interval (micro-seconds)
-            ; GD  = guard interval (micro-seconds)
+            ; GD  = guard interval (micro-seconds), the shortest
+            ;       guard interval defined by the amendment amendment.
 
 WIFIAMENDMENT    =  "802.11" AMENDMENT
 
@@ -369,7 +386,8 @@ SS               =  ["-"] (DIGIT / (NZDIGIT DIGIT) / ("1" DIGIT DIGIT))
             ; and -41 represent -41 dBm
 
 RATE             =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) /
-                    (NZDIGIT DIGIT DIGIT DIGIT)) ["." DIGIT]
+                    (NZDIGIT DIGIT DIGIT DIGIT) /
+                    (NZDIGIT DIGIT DIGIT DIGIT  DIGIT)) ["." DIGIT]
             ; A transmit or receive rate in Mbps
 
 GOC              =  NZDIGIT / (NZDIGIT DIGIT) / ("1" DIGIT DIGIT) /
@@ -396,8 +414,8 @@ VARIANT          =  "LIN" / "EXP"
             ; LIN = linear (arithmetic mean) average calculation
             ; EXP = exponential weighted average calculation
 
-WINDOW           =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT))
-                    TIMEUNIT
+WINDOW           =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT)
+                    / (NZDIGIT DIGIT DIGIT DIGIT) ) TIMEUNIT
             ; The time window over which the algorithm operates,
             ; measured in units of TIMEUNIT
 
@@ -411,6 +429,9 @@ SAMPLE           = (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) )
 
 TIMEUNIT         =  "S" / "M"
             ; S = units of seconds, M = units of minutes
+
+LINKID           = DIGIT / ("1" U5DIGIT)
+            ; IEEE 802.11be Link ID: 0-15
 
 DELIMITER        =  SLASH / 1*SP
             ; existing vendor delimiters
@@ -461,7 +482,7 @@ Connect-Info = "CONNECT RSSI:56 TxBitRate:150.0 RxBitRate:150.0
                 Global-OC:116"
 
 Connect-Info = "CONNECT 400.00 Mbps 802.11ax RSSI:56 TxBitRate:150.0
-                RxBitRate:150.0 Global-OC:133"
+                RxBitRate:150.0 Global-OC:133(Link-ID:0)"
 
 ~~~~~~~~~~
 {: #ci-example3 title="Example encodings of Connect-Info attribute in RADIUS Access-Request message"}
@@ -505,7 +526,7 @@ Connect-Info = "CONNECT 400.00 Mbps 802.11ac RSSI:56(AVG-LIN 600S)
 Connect-Info = "CONNECT TxBitRate:150.0(MAX 30S)
                 RxBitRate:120.5(MAX 30S) RSSI:-65(AVG-EXP 6-100)
                 FrameLoss:2(ACC 30S) FrameRetry:4(ACC 30S)
-                Global-OC:133"
+                Global-OC:133(Link-ID:0)"
 
 ~~~~~~~~~~
 {: #ci-example4 title="Example encodings of Connect-Info attribute in RADIUS Accounting-Request message"}
