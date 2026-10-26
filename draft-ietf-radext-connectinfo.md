@@ -595,6 +595,11 @@ This document has no IANA Actions.
 {: numbered="false"}
 *  00 - Adopted as RADEXT Working Group document (was draft-grayson-connectinfo-10).
 Split security section into security and privacy sections.
+*  01 - Addressed issues #1-#3: clarified reporting when operating with multiple
+links (value is the aggregate across links), added optional link-id to Global-OC
+ANBF as well as examples, fixed modulation rate range to 1-12 in ABNF,
+clarified description of guard interval values, updated RATE ABNF to allow >
+9999 Mbps, and updated WINDOW ABNF to allow > 999 seconds
 
 
 # Acknowledgements {#Acknowledgements}
