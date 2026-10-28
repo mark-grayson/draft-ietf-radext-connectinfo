@@ -414,8 +414,8 @@ VARIANT          =  "LIN" / "EXP"
             ; LIN = linear (arithmetic mean) average calculation
             ; EXP = exponential weighted average calculation
 
-WINDOW           =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT)
-                    / (NZDIGIT DIGIT DIGIT DIGIT) ) TIMEUNIT
+WINDOW           =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) )
+                    TIMEUNIT
             ; The time window over which the algorithm operates,
             ; measured in units of TIMEUNIT
 
@@ -423,7 +423,8 @@ WEIGHT           =  NZDIGIT
             ; The weighting of the AVG-EXP algorithm, where the
             ; exponential weight is 2^WEIGHT
 
-SAMPLE           = (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) )
+SAMPLE           = (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) /
+                   (NZDIGIT DIGIT DIGIT DIGIT) )
             ; The sample period in milliseconds used in the
             ; exponential moving average
 
