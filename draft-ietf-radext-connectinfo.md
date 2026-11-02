@@ -229,8 +229,8 @@ Types of Connect-Info Metrics {#Types}
 ===============
 
 The characteristics associated with the IEEE 802.11 connection
-that can be shared between the NAS and the RADIUS server include parameters 
-that define the operational context of the connection, as well as those that 
+that can be shared between the NAS and the RADIUS server include parameters
+that define the operational context of the connection, as well as those that
 can be used to derive a quality metric of the network performance.
 
 The dynamic performance metrics linked to a specific IEEE 802.11 connection are:
@@ -240,7 +240,7 @@ The dynamic performance metrics linked to a specific IEEE 802.11 connection are:
 * frame loss rate, and
 * frame retry rate.
 
-In addition to these performance metrics, the Connect-Info attribute can signal 
+In addition to these performance metrics, the Connect-Info attribute can signal
 the operational context of an IEEE 802.11 connection, including:
 
 * the Wi-Fi global operating class associated with the connection, as defined in {{IEEE80211}}.
@@ -364,7 +364,7 @@ MAXSPEED         =  (DIGIT / (NZDIGIT DIGIT) / (NZDIGIT DIGIT DIGIT) /
             ; SS  = number of spatial streams
             ; SYM = symbol interval (micro-seconds)
             ; GD  = guard interval (micro-seconds), the shortest
-            ;       guard interval defined by the amendment amendment.
+            ;       guard interval defined by the amendment.
 
 WIFIAMENDMENT    =  "802.11" AMENDMENT
 
