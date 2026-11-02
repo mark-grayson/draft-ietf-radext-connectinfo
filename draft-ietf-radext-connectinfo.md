@@ -42,15 +42,14 @@ author:
   email: j.redmore@cablelabs.com
 
 contributor:
+
 -
   ins: S. Gundavelli
   name: Sri Gundavelli
-  organization: Cisco Systems
-  street: 170 West Tasman Drive
-  city: San Jose
-  code: 95134
+  organization: Ameriband
+  code: 95135
   country: US
-  email: sgundave@cisco.com
+  email: sri.ietf@gmail.com
 
 -
   ins: B. Tomas
@@ -601,7 +600,8 @@ links (value is the aggregate across links), added optional link-id to Global-OC
 ANBF as well as examples, fixed modulation rate range to 1-12 in ABNF,
 clarified description of guard interval values, updated RATE ABNF to allow >
 9999 Mbps, and updated WINDOW ABNF to allow > 999 seconds
-*  02 - Correcting wrong fix applied to WINDOW and not SAMPLE in draft-01
+*  02 - Correcting wrong fix applied to WINDOW and not SAMPLE in draft-01.
+Updating Sri's contact details.
 
 
 # Acknowledgements {#Acknowledgements}
