@@ -1,7 +1,7 @@
 ---
 title: A syntax for the RADIUS Connect-Info attribute used in Wi-Fi networks
 abbrev: Connect-Info
-docname: draft-ietf-radext-connectinfo-00
+docname: draft-ietf-radext-connectinfo-02
 date: 2026-09-24
 category: info
 submissiontype: IETF
