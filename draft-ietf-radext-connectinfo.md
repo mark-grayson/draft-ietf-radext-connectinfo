@@ -229,13 +229,20 @@ Types of Connect-Info Metrics {#Types}
 ===============
 
 The characteristics associated with the IEEE 802.11 connection
-that can be shared between NAS and RADIUS server include those that can be used to derive
-a quality metric of the performance of a Wi-Fi network. These are:
+that can be shared between the NAS and the RADIUS server include parameters 
+that define the operational context of the connection, as well as those that 
+can be used to derive a quality metric of the network performance.
+
+The dynamic performance metrics linked to a specific IEEE 802.11 connection are:
 
 * transmit and receive bit rates,
 * received signal strength indicator (RSSI),
-* frame loss rate,
-* frame retry rate, and
+* frame loss rate, and
+* frame retry rate.
+
+In addition to these performance metrics, the Connect-Info attribute can signal 
+the operational context of an IEEE 802.11 connection, including:
+
 * the Wi-Fi global operating class associated with the connection, as defined in {{IEEE80211}}.
 
 While not uniquely associated with a single IEEE 802.11 connection, {{intro}} describes
